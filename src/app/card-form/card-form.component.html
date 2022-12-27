@@ -1,0 +1,57 @@
+<div class="columns">
+  <div class="column">
+    <app-card
+      [name]="cardForm.controls.name.value"
+      [cardNumber]="cardForm.controls.cardNumber.value"
+      [expiration]="cardForm.controls.expiration.value"
+    ></app-card>
+  </div>
+
+  <div class="column">
+    <form [formGroup]="cardForm" (ngSubmit)="onSubmit($event)">
+      <app-input
+        [control]="cardForm.controls.name"
+        label="Card Name"
+      ></app-input>
+      <app-input
+        [control]="cardForm.controls.cardNumber"
+        label="Card Number"
+      ></app-input>
+      <div class="columns">
+        <div class="column">
+          <app-input
+            [control]="cardForm.controls.expiration"
+            label="Expiration (MM/YY)"
+          ></app-input>
+        </div>
+        <div class="column">
+          <app-input
+            [control]="cardForm.controls.securityCode"
+            label="Security Code"
+          ></app-input>
+        </div>
+      </div>
+      <div class="buttons">
+        <button
+          class="button is-primary"
+          [disabled]="cardForm.invalid"
+          type="submit"
+        >
+          Submit
+        </button>
+        <button
+          class="button is-warning"
+          type="button"
+          (click)="onResetClick()"
+        >
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- for debugging -->
+<!-- <div>Form Contents: {{ cardForm.value | json }}</div>
+<div>Form is valid: {{ cardForm.valid }}</div>
+<div>Errors around name: {{ cardForm.controls.name.errors | json }}</div> -->
